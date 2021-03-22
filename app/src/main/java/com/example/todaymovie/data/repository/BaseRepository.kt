@@ -1,20 +1,21 @@
 package com.example.todaymovie.data.repository
 
 import com.example.todaymovie.data.Result
+import com.example.todaymovie.domain.model.DomainResult
 
 open class BaseRepository {
 
-    protected fun <I,O> Result<I>.mapTo(map:(I)->O): Result<O>{
+    protected fun <I,O> Result<I>.mapTo(map:(I)->O): DomainResult<O>{
         return if(this.status==Result.Status.LOADING){
-            Result.loading(null)
+            DomainResult.loading(null)
         } else if(this.status == Result.Status.ERROR || this.data==null){
-            Result.error(
+            DomainResult.error(
                 message = this.message.orEmpty(),
                 errorCode = this.errorCode,
                 error = null
             )
         } else {
-            Result.success(map(this.data))
+            DomainResult.success(map(this.data))
         }
     }
 }
