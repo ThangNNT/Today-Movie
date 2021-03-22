@@ -7,7 +7,7 @@
     <fragment android:name="com.example.todaymovie.ui.tv.TvFragment"
         android:id="@+id/tvFragment"
         tools:layout="@layout/fragment_tv"
-        android:label="Tv">
+        android:label="TV">
     </fragment>
 
 </navigation>
