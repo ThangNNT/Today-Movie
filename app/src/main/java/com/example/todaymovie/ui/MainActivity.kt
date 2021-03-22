@@ -2,8 +2,8 @@ package com.example.todaymovie.ui
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.todaymovie.R
 import com.example.todaymovie.ui.base.BaseActivity
@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener {
 
     private var currentNavController: LiveData<NavController>? = null
 
@@ -50,9 +50,23 @@ class MainActivity : BaseActivity() {
             setupActionBarWithNavController(navController)
         })
         currentNavController = controller
+        currentNavController?.value?.addOnDestinationChangedListener(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+        hideKeyboard()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        currentNavController?.value?.removeOnDestinationChangedListener(this)
     }
 }
