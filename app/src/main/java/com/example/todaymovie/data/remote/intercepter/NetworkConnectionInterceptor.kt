@@ -3,8 +3,10 @@ package com.example.todaymovie.data.remote.intercepter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Handler
 import android.os.Looper
+import android.view.Gravity
 import android.widget.Toast
 import com.example.todaymovie.R
 import com.example.todaymovie.app.App
@@ -38,9 +40,14 @@ class NetworkConnectionInterceptor @Inject constructor(@ApplicationContext
     private fun isInternetAvailable() : Boolean {
         val connectivityManager =
             applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        connectivityManager.activeNetworkInfo.also {
-            return it != null && it.isConnected
+        val networkCapabilities = connectivityManager.activeNetwork ?: return false
+        val actNw =
+            connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+        return when {
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
         }
     }
 
@@ -50,8 +57,8 @@ class NetworkConnectionInterceptor @Inject constructor(@ApplicationContext
             val context = App.getInstance()
             if(toast==null) {
                 toast = Toasty.warning(context, context.getString(R.string.no_internet_warning), Toast.LENGTH_LONG)
+                toast?.setGravity(Gravity.CENTER, 0, 0)
             }
-            toast?.setText(context.getString(R.string.no_internet_warning))
             toast?.show()
         }
     }
