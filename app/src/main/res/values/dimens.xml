@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dimens for text -->
+    <dimen name="text_normal_small">18sp</dimen>
+    <dimen name="text_normal_medium">20sp</dimen>
+    <dimen name="text_normal_large">22sp</dimen>
+
+    <dimen name="text_header_small">20sp</dimen>
+    <dimen name="text_header_medium">22sp</dimen>
+    <dimen name="text_header_large">24sp</dimen>
+
+    <!-- dimens for not being text -->
+    <dimen name="margin_standard">16dp</dimen>
+</resources>

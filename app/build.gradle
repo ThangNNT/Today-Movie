@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -63,6 +64,7 @@ dependencies {
 
     //DAGGER HILT
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     //----NAVIGATION COMPONENT----
