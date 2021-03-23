@@ -2,6 +2,8 @@ package com.example.todaymovie.data.remote.di
 
 import com.example.todaymovie.BuildConfig
 import com.example.todaymovie.data.remote.MovieService
+import com.example.todaymovie.data.remote.datasource.MovieRemoteDataSource
+import com.example.todaymovie.data.remote.datasource.MovieRemoteDataSourceImpl
 import com.example.todaymovie.data.remote.intercepter.NetworkConnectionInterceptor
 import com.example.todaymovie.data.remote.intercepter.OAuthInterceptor
 import dagger.Module
@@ -42,6 +44,12 @@ object RemoteModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MovieService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMovieRemoteDataSource(service: MovieService): MovieRemoteDataSource{
+        return MovieRemoteDataSourceImpl(service)
     }
 
 }

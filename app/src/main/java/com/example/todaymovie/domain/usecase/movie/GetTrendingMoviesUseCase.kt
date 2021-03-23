@@ -1,11 +1,11 @@
 package com.example.todaymovie.domain.usecase.movie
 
-import com.example.todaymovie.data.repository.MovieRepository
 import com.example.todaymovie.domain.model.DomainResult
 import com.example.todaymovie.domain.model.MovieResult
+import com.example.todaymovie.domain.repository.MovieRepository
 import javax.inject.Inject
 
-class GetTrendingMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
+class MovieRepositoryGetTrendingMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
     suspend fun getTrendingMovies(): DomainResult<MovieResult> {
         return repository.getTrendingMovies(TRENDING_DAY)
     }
