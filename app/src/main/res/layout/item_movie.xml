@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 tools:ignore="ContentDescription" />
-            <androidx.appcompat.widget.AppCompatRatingBar
+            <RatingBar
                 android:id="@+id/ratingBar_movie"
                 android:theme="@style/RatingBar"
                 style="?android:attr/ratingBarStyleSmall"

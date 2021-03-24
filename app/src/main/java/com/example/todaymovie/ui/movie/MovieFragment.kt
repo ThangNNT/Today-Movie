@@ -1,42 +1,70 @@
 package com.example.todaymovie.ui.movie
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
-import com.example.todaymovie.R
-import com.example.todaymovie.data.remote.MovieService
+import androidx.fragment.app.viewModels
+import com.example.todaymovie.databinding.FragmentMovieBinding
+import com.example.todaymovie.domain.model.DomainResult
+import com.example.todaymovie.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MovieFragment : Fragment() {
-    @Inject
-    lateinit var service: MovieService
+
+    private lateinit var binding: FragmentMovieBinding
+    private val movieViewModel: MovieViewModel by viewModels()
+    private val controller = MovieController(::onViewMoreClick, ::onItemClick)
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+    ): View {
+        binding = FragmentMovieBinding.inflate(inflater)
+        return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        lifecycleScope.launch {
-            try {
-                service.getPopularMovies()
-            }
-            catch (ex: Throwable){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+        setupObserver()
+    }
 
+    private fun setup(){
+        with(binding.rvMovies){
+            setController(controller)
+        }
+    }
+
+    private fun setupObserver(){
+        movieViewModel.movieHome.observe(viewLifecycleOwner){
+            when(it.status){
+                DomainResult.Status.LOADING -> {
+                    binding.loadingBar.visibility = View.VISIBLE
+                }
+                DomainResult.Status.SUCCESS -> {
+                    Log.d("AAAAAAAA", it.data.toString())
+                    binding.loadingBar.visibility = View.GONE
+                    it.data?.let { movieHome ->
+                        controller.setData(movieHome)
+                    }
+                }
+                DomainResult.Status.ERROR -> {
+                    Log.d("AAAAAAAA", it.toString())
+                }
             }
         }
     }
 
-    companion object {
+    private fun onViewMoreClick(){
 
     }
+    private fun onItemClick(movie: Movie){
+
+    }
+
 }
