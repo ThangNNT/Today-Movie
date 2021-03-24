@@ -4,20 +4,21 @@ import com.example.todaymovie.data.remote.response.MovieResponse
 import com.example.todaymovie.data.remote.response.RemoteMovie
 import com.example.todaymovie.domain.model.Movie
 import com.example.todaymovie.domain.model.MovieResult
+import javax.inject.Inject
 
-class MovieMapper {
+class MovieMapper @Inject constructor() {
 
     fun mapRemoteMovieResponseToDomain(input: MovieResponse): MovieResult {
         return MovieResult(
             page = input.page,
-            result = mapRemoteMovieListToDomain(input = input.result),
+            results = mapRemoteMovieListToDomain(input = input.results),
             totalResults = input.total_results,
             totalPages = input.total_pages
         )
     }
 
-    fun mapRemoteMovieListToDomain(input: List<RemoteMovie>): List<Movie>{
-        return input.map {
+    fun mapRemoteMovieListToDomain(input: List<RemoteMovie>?): List<Movie>?{
+        return input?.map {
             mapRemoteMovieToDomain(it)
         }
     }
