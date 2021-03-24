@@ -1,5 +1,8 @@
 package com.example.todaymovie.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class MovieResult(
     val page: Int?,
     val results: List<Movie>?,
@@ -7,6 +10,7 @@ data class MovieResult(
     val totalPages: Int?
 )
 
+@Parcelize
 data class Movie(
     val posterPath: String?,
     val adult: Boolean?,
@@ -22,4 +26,4 @@ data class Movie(
     val voteCount: Int?,
     val video: Boolean?,
     val voteAverage: Float?
-)
+): Parcelable
