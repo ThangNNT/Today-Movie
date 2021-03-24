@@ -6,7 +6,7 @@ import com.example.todaymovie.domain.model.MovieResult
 interface MovieRepository {
     suspend fun getPopularMovies(): DomainResult<MovieResult>
 
-    suspend fun getTrendingMovies(timeWindow: String): DomainResult<MovieResult>
+    suspend fun getTrendingMovies(): DomainResult<MovieResult>
 
     suspend fun getLatestMovies(): DomainResult<MovieResult>
 

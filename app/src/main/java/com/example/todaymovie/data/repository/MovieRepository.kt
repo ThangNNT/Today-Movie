@@ -13,7 +13,7 @@ class MovieRepositoryImpl @Inject constructor(private val movieRemoteDataSource:
         movieMapper.mapRemoteMovieResponseToDomain(it)
     }
 
-    override suspend fun getTrendingMovies(timeWindow: String): DomainResult<MovieResult> = movieRemoteDataSource.getTrendingMovies(timeWindow).mapTo {
+    override suspend fun getTrendingMovies(): DomainResult<MovieResult> = movieRemoteDataSource.getTrendingMovies(TRENDING_DAY).mapTo {
         movieMapper.mapRemoteMovieResponseToDomain(it)
     }
 
@@ -31,6 +31,11 @@ class MovieRepositoryImpl @Inject constructor(private val movieRemoteDataSource:
 
     override suspend fun getNowPlayingMovies(): DomainResult<MovieResult> = movieRemoteDataSource.getNowPlayingMovies().mapTo {
         movieMapper.mapRemoteMovieResponseToDomain(it)
+    }
+
+    companion object {
+        private const val TRENDING_DAY = "day"
+        private const val TRENDING_WEEK ="week"
     }
 
 }
