@@ -2,7 +2,7 @@ package com.example.todaymovie.data.remote.response
 
 data class MovieResponse(
     val page: Int?,
-    val result: List<RemoteMovie>,
+    val results: List<RemoteMovie>?,
     val total_results: Int?,
     val total_pages: Int?
 )
