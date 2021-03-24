@@ -11,6 +11,7 @@ import com.example.todaymovie.databinding.FragmentMovieBinding
 import com.example.todaymovie.domain.model.DomainResult
 import com.example.todaymovie.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MovieFragment : Fragment() {
@@ -47,14 +48,13 @@ class MovieFragment : Fragment() {
                     binding.loadingBar.visibility = View.VISIBLE
                 }
                 DomainResult.Status.SUCCESS -> {
-                    Log.d("AAAAAAAA", it.data.toString())
                     binding.loadingBar.visibility = View.GONE
                     it.data?.let { movieHome ->
                         controller.setData(movieHome)
                     }
                 }
                 DomainResult.Status.ERROR -> {
-                    Log.d("AAAAAAAA", it.toString())
+                    Timber.e(it.toString())
                 }
             }
         }
@@ -66,5 +66,4 @@ class MovieFragment : Fragment() {
     private fun onItemClick(movie: Movie){
 
     }
-
 }
