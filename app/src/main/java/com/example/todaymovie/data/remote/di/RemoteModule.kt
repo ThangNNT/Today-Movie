@@ -28,6 +28,7 @@ object RemoteModule {
     @Provides
     fun provideMovieService (networkConnectionInterceptor: NetworkConnectionInterceptor): MovieService {
         val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okkHttpClient = OkHttpClient.Builder()
             .addInterceptor(networkConnectionInterceptor)
             .addInterceptor(loggingInterceptor)
