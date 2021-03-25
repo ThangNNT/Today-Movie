@@ -1,7 +1,9 @@
 package com.example.todaymovie.di
 
 import com.example.todaymovie.domain.repository.MovieRepository
+import com.example.todaymovie.domain.repository.TVRepository
 import com.example.todaymovie.domain.usecase.movie.*
+import com.example.todaymovie.domain.usecase.tv.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,5 +58,45 @@ class UseCaseModule {
                                    getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
                                    getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase): GetHomeMoviesUseCase{
         return GetHomeMoviesUseCase(getNowPlayingMoviesUseCase, getPopularMoviesUseCase, getTopRatedMoviesUseCase, getTrendingMoviesUseCase, getUpcomingMoviesUseCase)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetAiringToDayTVsUseCase(tvRepository: TVRepository): GetAiringTodayTVsUseCase{
+        return GetAiringTodayTVsUseCase(repository = tvRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetOnTheAirTVsUseCase(tvRepository: TVRepository): GetOnTheAirTVsUseCase{
+        return GetOnTheAirTVsUseCase(repository = tvRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPopularTVsUseCase(tvRepository: TVRepository): GetPopularTVsUseCase {
+        return GetPopularTVsUseCase(repository = tvRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetTopRatedTVsUseCase(tvRepository: TVRepository): GetTopRatedTVsUseCase{
+        return GetTopRatedTVsUseCase(repository = tvRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetTrendingTVsUseCase(tvRepository: TVRepository): GetTrendingTVsUseCase{
+        return GetTrendingTVsUseCase(repository = tvRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetHomeTVsUseCase(getAiringTodayTVsUseCase: GetAiringTodayTVsUseCase,
+                                 getOnTheAirTVsUseCase: GetOnTheAirTVsUseCase,
+                                 getPopularTVsUseCase: GetPopularTVsUseCase,
+                                 getTopRatedTVsUseCase: GetTopRatedTVsUseCase,
+                                 getTrendingTVsUseCase: GetTrendingTVsUseCase): GetHomeTVsUseCase {
+        return GetHomeTVsUseCase(getAiringTodayTVsUseCase, getOnTheAirTVsUseCase, getPopularTVsUseCase, getTopRatedTVsUseCase, getTrendingTVsUseCase)
     }
 }
