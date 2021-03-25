@@ -15,6 +15,11 @@ class MovieController(private val fragment: Fragment, private val onSeeMoreClick
     override fun buildModels(data: MovieHome?) {
         data?.let { data1->
             var id = -1
+            movieBanner {
+                id(id--)
+                fragment(fragment)
+                movies(data1.trendingMovies)
+            }
 
             HomeTitleBindingModel_()
                 .id(id--)

@@ -18,7 +18,7 @@ class MovieFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieBinding
     private val movieViewModel: MovieViewModel by viewModels()
-    private val controller = MovieController(::onViewMoreClick, ::onItemClick)
+    private var controller: MovieController?= null
 
 
     override fun onCreateView(
@@ -36,8 +36,11 @@ class MovieFragment : Fragment() {
     }
 
     private fun setup(){
-        with(binding.rvMovies){
-            setController(controller)
+        controller= MovieController(this, ::onViewMoreClick, ::onItemClick)
+        controller?.let { controller->
+            with(binding.rvMovies){
+                setController(controller)
+            }
         }
     }
 
@@ -50,7 +53,7 @@ class MovieFragment : Fragment() {
                 DomainResult.Status.SUCCESS -> {
                     binding.loadingBar.visibility = View.GONE
                     it.data?.let { movieHome ->
-                        controller.setData(movieHome)
+                        controller?.setData(movieHome)
                     }
                 }
                 DomainResult.Status.ERROR -> {
