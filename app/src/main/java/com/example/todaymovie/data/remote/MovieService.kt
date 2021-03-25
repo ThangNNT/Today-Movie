@@ -11,7 +11,7 @@ interface MovieService {
     suspend fun getPopularMovies(): Response<MovieResponse>
 
     @GET("3/trending/movie/{timeWindow}")
-    suspend fun getTrendingMovies(@Path("time_window") timeWindow: String): Response<MovieResponse>
+    suspend fun getTrendingMovies(@Path("timeWindow") timeWindow: String): Response<MovieResponse>
 
     @GET("3/movie/latest")
     suspend fun getLatestMovies(): Response<MovieResponse>
