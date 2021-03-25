@@ -4,6 +4,8 @@ import com.example.todaymovie.BuildConfig
 import com.example.todaymovie.data.remote.MovieService
 import com.example.todaymovie.data.remote.datasource.MovieRemoteDataSource
 import com.example.todaymovie.data.remote.datasource.MovieRemoteDataSourceImpl
+import com.example.todaymovie.data.remote.datasource.TVRemoteDataSource
+import com.example.todaymovie.data.remote.datasource.TVRemoteDataSourceImpl
 import com.example.todaymovie.data.remote.intercepter.NetworkConnectionInterceptor
 import com.example.todaymovie.data.remote.intercepter.OAuthInterceptor
 import dagger.Module
@@ -49,8 +51,14 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideMovieRemoteDataSource(service: MovieService): MovieRemoteDataSource{
+    fun provideMovieRemoteDataSource(service: MovieService): MovieRemoteDataSource {
         return MovieRemoteDataSourceImpl(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideTvRemoteDataSource(service: MovieService): TVRemoteDataSource {
+        return TVRemoteDataSourceImpl(service)
     }
 
 }
