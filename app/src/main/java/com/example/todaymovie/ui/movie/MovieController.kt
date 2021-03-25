@@ -10,6 +10,7 @@ import com.example.todaymovie.R
 import com.example.todaymovie.domain.model.Movie
 import com.example.todaymovie.domain.model.MovieHome
 import com.example.todaymovie.ui.movie.banner.movieBanner
+import com.example.todaymovie.util.px
 
 class MovieController(private val fragment: Fragment, private val onSeeMoreClick: ()-> Unit, private val onItemClick: (movie: Movie) -> Unit): TypedEpoxyController<MovieHome>() {
     override fun buildModels(data: MovieHome?) {
@@ -37,7 +38,7 @@ class MovieController(private val fragment: Fragment, private val onSeeMoreClick
             popularCarouselItemModels?.let {
                 carousel {
                     id(id--)
-                    padding(Carousel.Padding(30, 30))
+                    padding(Carousel.Padding(16.px, 16.px))
                     Carousel.setDefaultGlobalSnapHelperFactory(null)
                     models(popularCarouselItemModels)
                 }
@@ -61,7 +62,7 @@ class MovieController(private val fragment: Fragment, private val onSeeMoreClick
             nowPlayingCarouselItemModels?.let {
                 carousel {
                     id(id--)
-                    padding(Carousel.Padding(30, 30))
+                    padding(Carousel.Padding(16.px, 16.px))
                     Carousel.setDefaultGlobalSnapHelperFactory(null)
                     models(nowPlayingCarouselItemModels)
                 }
@@ -84,7 +85,7 @@ class MovieController(private val fragment: Fragment, private val onSeeMoreClick
             topRatedCarouselItemModels?.let {
                 carousel {
                     id(id--)
-                    padding(Carousel.Padding(30, 30))
+                    padding(Carousel.Padding(16.px, 16.px))
                     Carousel.setDefaultGlobalSnapHelperFactory(null)
                     models(topRatedCarouselItemModels)
                 }
@@ -107,7 +108,7 @@ class MovieController(private val fragment: Fragment, private val onSeeMoreClick
             upcomingCarouselItemModels?.let {
                 carousel {
                     id(id--)
-                    padding(Carousel.Padding(30, 30))
+                    padding(Carousel.Padding(16.px, 16.px))
                     Carousel.setDefaultGlobalSnapHelperFactory(null)
                     models(upcomingCarouselItemModels)
                 }
