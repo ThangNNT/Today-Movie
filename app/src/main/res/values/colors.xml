@@ -3,6 +3,7 @@
 
     <!-- system color -->
     <color name="windowColor">#474747</color>
+    <color name="windowColorOpposite">#FDFDFD</color>
     <color name="colorPrimary">#1E1E1E</color>
     <color name="colorPrimaryVariant">#0E0E0E</color>
     <color name="colorOnPrimary">#000000</color>
@@ -45,5 +46,8 @@
     <!-- rating bar -->
     <color name="rating_bar_active">#FFC107</color>
     <color name="rating_bar_inactive">#B8B8B8</color>
+
+    <color name="rating_bar2_active">#FFC107</color>
+    <color name="rating_bar2_inactive">#FFFFFF</color>
 
 </resources>

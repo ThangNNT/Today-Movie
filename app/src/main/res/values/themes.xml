@@ -18,4 +18,8 @@
         <item name="colorControlNormal">@color/rating_bar_inactive</item>
         <item name="colorControlActivated">@color/rating_bar_active</item>
     </style>
+    <style name="RatingBar2" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/rating_bar2_inactive</item>
+        <item name="colorControlActivated">@color/rating_bar2_active</item>
+    </style>
 </resources>
