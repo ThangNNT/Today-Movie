@@ -12,5 +12,5 @@ interface TVRepository {
 
     suspend fun getAiringToday(): DomainResult<TvResult>
 
-    suspend fun getTrending(windowTime: String): DomainResult<TvResult>
+    suspend fun getTrending(): DomainResult<TvResult>
 }

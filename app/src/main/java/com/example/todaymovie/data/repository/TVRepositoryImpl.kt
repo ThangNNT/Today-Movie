@@ -34,7 +34,7 @@ class TVRepositoryImpl @Inject constructor(private val dataSource: TVRemoteDataS
         }
     }
 
-    override suspend fun getTrending(windowTime: String): DomainResult<TvResult> {
+    override suspend fun getTrending(): DomainResult<TvResult> {
         return dataSource.getTrending(TRENDING_DAY).mapTo {
             mapper.mapRemoteTVResponseToDomain(it)
         }
