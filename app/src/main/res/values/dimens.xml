@@ -14,5 +14,6 @@
 
     <!-- dimens for not being text -->
     <dimen name="margin_standard">16dp</dimen>
+    <dimen name="margin_standard_double">32dp</dimen>
     <dimen name="recycleView_paddingBottom">24dp</dimen>
 </resources>
