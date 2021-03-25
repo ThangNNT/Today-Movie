@@ -12,5 +12,10 @@
     <string name="top_rated_movie">Top Rated</string>
     <string name="upcoming_movie">Upcoming</string>
 
+    <string name="popular_tv">Popular</string>
+    <string name="on_the_air_tv">On The Air</string>
+    <string name="airing_today_tv">Airing Today</string>
+    <string name="top_rated_tv">Top Rated</string>
+
 
 </resources>
