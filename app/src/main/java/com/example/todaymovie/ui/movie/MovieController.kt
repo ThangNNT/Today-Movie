@@ -6,17 +6,19 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.airbnb.epoxy.carousel
 import com.example.todaymovie.HomeTitleBindingModel_
 import com.example.todaymovie.MovieBindingModel_
+import com.example.todaymovie.R
 import com.example.todaymovie.domain.model.Movie
 import com.example.todaymovie.domain.model.MovieHome
+import com.example.todaymovie.ui.movie.banner.movieBanner
 
-class MovieController(private val onSeeMoreClick: ()-> Unit, private val onItemClick: (movie: Movie) -> Unit): TypedEpoxyController<MovieHome>() {
+class MovieController(private val fragment: Fragment, private val onSeeMoreClick: ()-> Unit, private val onItemClick: (movie: Movie) -> Unit): TypedEpoxyController<MovieHome>() {
     override fun buildModels(data: MovieHome?) {
         data?.let { data1->
             var id = -1
 
             HomeTitleBindingModel_()
                 .id(id--)
-                .title("Popular")
+                .title(fragment.requireContext().getString(R.string.popular_movie))
                 .addTo(this)
 
             val popularCarouselItemModels = data1.popularMovies?.map { movie->
@@ -39,7 +41,7 @@ class MovieController(private val onSeeMoreClick: ()-> Unit, private val onItemC
 
             HomeTitleBindingModel_()
                 .id(id--)
-                .title("Now Playing")
+                .title(fragment.requireContext().getString(R.string.now_playing_movie))
                 .addTo(this)
 
             val nowPlayingCarouselItemModels = data1.nowPlayingMovies?.map { movie->
@@ -62,7 +64,7 @@ class MovieController(private val onSeeMoreClick: ()-> Unit, private val onItemC
 
             HomeTitleBindingModel_()
                 .id(id--)
-                .title("Top Rated")
+                .title(fragment.requireContext().getString(R.string.top_rated_movie))
                 .addTo(this)
 
             val topRatedCarouselItemModels = data1.topRateMovies?.map { movie->
@@ -85,7 +87,7 @@ class MovieController(private val onSeeMoreClick: ()-> Unit, private val onItemC
 
             HomeTitleBindingModel_()
                 .id(id--)
-                .title("Upcoming")
+                .title(fragment.requireContext().getString(R.string.upcoming_movie))
                 .addTo(this)
 
             val upcomingCarouselItemModels = data1.upcomingMovies?.map { movie->

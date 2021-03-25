@@ -7,4 +7,10 @@
     <string name="rating_count">(%1$d)</string>
     <string name="rating_count_more_than_10000">(10000+)</string>
 
+    <string name="popular_movie">Popular</string>
+    <string name="now_playing_movie">Now Playing</string>
+    <string name="top_rated_movie">Top Rated</string>
+    <string name="upcoming_movie">Upcoming</string>
+
+
 </resources>
