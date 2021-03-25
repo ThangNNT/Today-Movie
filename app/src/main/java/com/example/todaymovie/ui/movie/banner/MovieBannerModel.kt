@@ -17,6 +17,8 @@ open class MovieBannerModel: EpoxyModelWithHolder<MovieBannerModel.Holder>() {
     @EpoxyAttribute
     var fragment: Fragment? = null
 
+    private var currentPosition = 0
+
     override fun getDefaultLayout(): Int {
         return  R.layout.item_movie_home_banner
     }
@@ -24,8 +26,16 @@ open class MovieBannerModel: EpoxyModelWithHolder<MovieBannerModel.Holder>() {
     override fun bind(holder: Holder) {
         holder.viewPager?.let {
             it.offscreenPageLimit = 2
-            if(fragment!=null && movies !=null)
-                it.adapter = MovieBannerStateAdapter(fragment!!,movies!!)
+            if(fragment!=null && movies !=null) {
+                it.adapter = MovieBannerStateAdapter(fragment!!, movies!!)
+                it.setCurrentItem(currentPosition, false)
+                it.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        currentPosition = position
+                    }
+                })
+            }
         }
     }
 
