@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/recycleView_paddingBottom"
             />
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/loading_bar"
