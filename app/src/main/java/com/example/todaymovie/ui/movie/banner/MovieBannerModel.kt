@@ -20,7 +20,7 @@ open class MovieBannerModel: EpoxyModelWithHolder<MovieBannerModel.Holder>() {
     private var currentPosition = 0
 
     override fun getDefaultLayout(): Int {
-        return  R.layout.item_movie_home_banner
+        return  R.layout.item_media_home_banner
     }
 
     override fun bind(holder: Holder) {
